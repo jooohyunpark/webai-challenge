@@ -28,6 +28,7 @@ const Hero = () => {
 
   const scale = useTransform(scrollYProgress, [0.4, 0.8], [1, 3]);
   const opacity = useTransform(scrollYProgress, [0.6, 0.8], [1, 0]);
+  const ctaOpacity = useTransform(scrollYProgress, [0.4, 0.6], [1, 0]);
 
   return (
     <StyledSection style={{ position: "relative" }}>
@@ -57,7 +58,7 @@ const Hero = () => {
                 </FadeIn>
 
                 <FadeIn>
-                  <Button onClick={toggleView}>
+                  <Button onClick={toggleView} style={{ opacity: ctaOpacity }}>
                     {isCarousel ? "View Grid" : "View Row"}
                   </Button>
                 </FadeIn>
