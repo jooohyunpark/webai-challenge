@@ -21,3 +21,4 @@ React, styled-components, motion, react-grid-system. Especially, motion is power
 - Instead of fade in/out for Gallery items, explore layout transition using framer motion. (This could be possible using recent `layout` features)
 - Better resonsiveness over mobile/tablet/desktop breakpoints.
 - Implement a11y best practices.
+- Avoid using fixed position for gallery grid view.
