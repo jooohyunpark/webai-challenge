@@ -1,28 +1,42 @@
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 
-export const GalleryContainer = styled.div`
+export const GalleryContainer = styled(motion.div)`
   width: 100%;
   max-width: 100vw;
-  padding: 20px;
-  /* overflow-x: auto; */
+  overflow-x: hidden;
+  padding: 40px 0;
 `;
 
 export const CarouselView = styled(motion.div)`
   display: flex;
-  width: 100%;
-  gap: 10px;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  gap: 15px;
 `;
 
 export const GridView = styled(motion.div)`
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  gap: 10px;
+  width: 100%;
 `;
 
-export const GalleryItem = styled(motion.div)`
-  width: 120px;
+export const CarouselItem = styled(motion.div)`
+  width: 80px;
   flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    width: 120px;
+  }
+`;
+
+export const GridItem = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  place-content: center;
 `;

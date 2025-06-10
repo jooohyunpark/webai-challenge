@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { StyledCard } from "./styles";
 
-const Card = ({ children, intensity = 15 }) => {
+const Card = ({ children, intensity = 20 }) => {
   const cardRef = useRef(null);
 
   const [rotateX, setRotateX] = useState(0);

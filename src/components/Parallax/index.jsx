@@ -9,10 +9,14 @@ const Parallax = ({ children, velocity = 10, scaleVelocity = 1 }) => {
     target: ref,
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [-velocity, velocity]);
+  const y = useTransform(
+    scrollYProgress,
+    [0, 0.4, 0.6, 1],
+    [-velocity, 0, 0, velocity]
+  );
   const scale = useTransform(
     scrollYProgress,
-    [0, 0.5, 0.5, 1],
+    [0, 0.4, 0.6, 1],
     [1 - scaleVelocity, 1, 1, 1 - scaleVelocity]
   );
 

@@ -9,9 +9,8 @@ const FadeIn = ({ children, delay = 0, duration = 0.4 }) => {
         duration,
         delay,
         ease: "easeOut",
-        amount: 0.75,
-        once: false,
       }}
+      viewport={{ once: false, amount: 0.75 }}
     >
       {children}
     </motion.div>

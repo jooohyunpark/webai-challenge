@@ -1,20 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-import { Container, Row, Col } from "react-grid-system";
-
-const NavContainer = styled.nav`
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  padding: 10px 0;
-`;
-
-const NavContent = styled.div`
-  backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-`;
+import { Container, Row, Col, Visible } from "react-grid-system";
+import { NavContainer, NavContent, LoginLayout } from "./styles";
 
 const Nav = () => {
   return (
@@ -22,8 +8,18 @@ const Nav = () => {
       <NavContent>
         <Container>
           <Row>
-            <Col xs={6}>ddd</Col>
-            <Col xs={6}>Login</Col>
+            <Col xs={6}>
+              <Row>
+                <Col>AI Prompt Library</Col>
+                <Visible lg xl xxl>
+                  <Col>AI Design Workshop</Col>
+                  <Col>Midjourney ChatGPT</Col>
+                </Visible>
+              </Row>
+            </Col>
+            <Col xs={6}>
+              <LoginLayout>Login</LoginLayout>
+            </Col>
           </Row>
         </Container>
       </NavContent>

@@ -9,7 +9,8 @@ import {
   GalleryLayout,
   TextContent,
 } from "./styles";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useScroll, useTransform } from "framer-motion";
 
 const Hero = () => {
   const [isCarousel, setIsCarousel] = useState(true);
@@ -18,8 +19,18 @@ const Hero = () => {
     setIsCarousel(!isCarousel);
   };
 
+  const h1Ref = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    offset: ["start end", "end start"],
+    target: h1Ref,
+  });
+
+  const scale = useTransform(scrollYProgress, [0.4, 0.8], [1, 3]);
+  const opacity = useTransform(scrollYProgress, [0.6, 0.8], [1, 0]);
+
   return (
-    <StyledSection>
+    <StyledSection style={{ position: "relative" }}>
       <HeroContent>
         <Container fluid>
           <Row>
@@ -36,10 +47,10 @@ const Hero = () => {
 
         <Container>
           <Row>
-            <Col xs={6} offset={{ xs: 3 }}>
+            <Col xs={12} lg={6} offset={{ lg: 3 }}>
               <TextContent layout>
                 <FadeIn>
-                  <H1>
+                  <H1 ref={h1Ref} style={{ scale, opacity }}>
                     Discover, remix, and master AI visual creation using our
                     prompt library built for designers
                   </H1>

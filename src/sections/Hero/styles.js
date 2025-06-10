@@ -13,13 +13,18 @@ export const HeroContent = styled.div`
   text-align: center;
 `;
 
-export const H1 = styled.h1`
-  font-size: 24px;
+export const H1 = styled(motion.h1)`
+  font-size: 18px;
   font-weight: 500;
   line-height: 1.2;
   text-align: center;
   text-wrap: balance;
   mix-blend-mode: difference;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 export const GalleryLayout = styled.div`
@@ -28,6 +33,7 @@ export const GalleryLayout = styled.div`
   right: 0;
   bottom: 0;
   top: 0; */
+  margin-bottom: 40px;
 `;
 
 export const TextContent = styled(motion.div)`
