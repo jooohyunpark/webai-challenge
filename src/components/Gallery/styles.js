@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 export const GalleryContainer = styled(motion.div)`
   width: 100%;
   max-width: 100vw;
-  overflow-x: hidden;
   padding: 40px 0;
 `;
 

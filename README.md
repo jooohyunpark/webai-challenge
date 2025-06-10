@@ -16,7 +16,7 @@ React, styled-components, motion, react-grid-system. Especially, motion is power
 
 ## If I had enough time:
 
-- Swiper for Carousel implementation.
+- Swiper for Carousel implementation, so that all items are view-able.
 - Suggest design layout updates to better achieve smooth transition between carousel-gallery views, without making conflict with the copy.
 - Instead of fade in/out for Gallery items, explore layout transition using framer motion. (This could be possible using recent `layout` features)
 - Better resonsiveness over mobile/tablet/desktop breakpoints.
