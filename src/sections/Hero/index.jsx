@@ -20,23 +20,23 @@ const Hero = () => {
 
   const h1X = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.9, 0.95],
+    [0, 0.1, 0.85, 0.95],
     ["50%", "0%", "0%", "50%"]
   );
   const h1XmMargin = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.9, 0.95],
+    [0, 0.1, 0.85, 0.95],
     ["-0.8em", "0em", "0em", "-0.8em"]
   );
 
   const boxScale = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.9, 0.95],
+    [0, 0.1, 0.85, 0.95],
     [5, 1, 1, 5]
   );
   const boxRotation = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.9, 0.95],
+    [0, 0.1, 0.85, 0.95],
     ["0deg", "-180deg", "-180deg", "90deg"],
     {
       ease: easeInOut,
@@ -48,8 +48,8 @@ const Hero = () => {
     const introStart = 0.12 + (index * 0.15) / wordCount;
     const introEnd = introStart + 0.1;
 
-    const outroStart = 0.85;
-    const outroEnd = 0.9;
+    const outroStart = 0.83;
+    const outroEnd = 0.86;
 
     return {
       opacity: useTransform(
@@ -70,7 +70,7 @@ const Hero = () => {
 
   return (
     <StyledSection style={{ position: "relative" }}>
-      <ScrollLayout height="800vh" ref={scrollRef}>
+      <ScrollLayout height="1000vh" ref={scrollRef}>
         <Container>
           <Row>
             <Col xs={10} lg={6} offset={{ xs: 1, lg: 3 }}>
