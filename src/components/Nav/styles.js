@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const NavContainer = styled.nav`
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000;
   font-size: 14px;

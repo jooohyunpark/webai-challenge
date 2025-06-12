@@ -9,32 +9,33 @@ export const StyledSection = styled.section`
   justify-content: center;
 `;
 
+export const HeroContent = styled.div`
+  text-align: center;
+`;
+
 export const H1 = styled(motion.h1)`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  column-gap: 0.2em;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.2;
   text-align: center;
   text-wrap: balance;
   mix-blend-mode: difference;
-  text-align: center;
+  margin-bottom: 20px;
 
   @media (min-width: 768px) {
     font-size: 24px;
   }
 `;
 
-export const Box = styled(motion.div)`
-  width: 0.8em;
-  height: 0.8em;
-  margin-right: 0.2em;
-  background-color: white;
+export const GalleryLayout = styled.div`
+  /* position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0; */
+  margin-bottom: 40px;
 `;
 
-export const H1Span = styled(motion.span)`
-  display: inline-block;
+export const TextContent = styled(motion.div)`
+  transition: all 0.3s ease-in-out;
 `;
