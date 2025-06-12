@@ -52,13 +52,13 @@ function Cards({
   data,
   from = 0,
   len = Math.PI * 2,
-  radius = 5.25,
+  radius = 5.75,
   onPointerOver,
   onPointerOut,
   ...props
 }) {
   const [hovered, hover] = useState(null);
-  const amount = Math.round(len * 22);
+  const amount = Math.round(len * 12);
   return (
     <group {...props}>
       {Array.from({ length: amount }, (_, i) => {
@@ -91,13 +91,7 @@ function Card({ url, active, hovered, ...props }) {
   });
   return (
     <group {...props}>
-      <Image
-        ref={ref}
-        transparent
-        url={url}
-        fit="contain"
-        side={THREE.DoubleSide}
-      />
+      <Image ref={ref} url={url} fit="contain" side={THREE.DoubleSide} />
     </group>
   );
 }
