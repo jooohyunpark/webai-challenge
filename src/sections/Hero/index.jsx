@@ -18,14 +18,26 @@ const Hero = () => {
   const words = text.split(" ");
   const wordCount = words.length;
 
-  const h1X = useTransform(scrollYProgress, [0, 0.1], ["50%", "0%"]);
-  const h1XmMargin = useTransform(scrollYProgress, [0, 0.1], ["-0.8em", "0em"]);
+  const h1X = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 0.95],
+    ["50%", "0%", "0%", "50%"]
+  );
+  const h1XmMargin = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 0.95],
+    ["-0.8em", "0em", "0em", "-0.8em"]
+  );
 
-  const boxScale = useTransform(scrollYProgress, [0, 0.1], [3, 1]);
+  const boxScale = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 0.95],
+    [3, 1, 1, 3]
+  );
   const boxRotation = useTransform(
     scrollYProgress,
-    [0, 0.1],
-    ["0deg", "-180deg"],
+    [0, 0.1, 0.9, 0.95],
+    ["0deg", "-180deg", "-180deg", "90deg"],
     {
       ease: easeInOut,
     }
@@ -33,24 +45,41 @@ const Hero = () => {
 
   // Create arrays of opacity and y transforms for each word
   const wordAnimations = words.map((_, index) => {
-    const start = 0.12 + (index * 0.15) / wordCount;
-    const end = start + 0.1;
+    const introStart = 0.12 + (index * 0.15) / wordCount;
+    const introEnd = introStart + 0.1;
+
+    const outroStart = 0.85;
+    const outroEnd = 0.9;
 
     return {
-      opacity: useTransform(scrollYProgress, [start, end], [0, 1]),
-      y: useTransform(scrollYProgress, [start, end], [10, 0], {
+      opacity: useTransform(
+        scrollYProgress,
+        [introStart, introEnd, outroStart, outroEnd],
+        [0, 1, 1, 0]
+      ),
+      y: useTransform(scrollYProgress, [introStart, introEnd], [10, 0], {
         ease: easeInOut,
       }),
+      blur: useTransform(
+        scrollYProgress,
+        [introStart, introEnd, outroStart, outroEnd],
+        ["blur(5px)", "blur(0px)", "blur(0px)", "blur(5px)"]
+      ),
     };
   });
 
   return (
     <StyledSection style={{ position: "relative" }}>
-      <ScrollLayout height="750vh" ref={scrollRef}>
+      <ScrollLayout height="800vh" ref={scrollRef}>
         <Container>
           <Row>
-            <Col xs={12} md={10} lg={6} offset={{ md: 1, lg: 3 }}>
-              <H1 style={{ x: h1X, marginLeft: h1XmMargin }}>
+            <Col xs={10} lg={6} offset={{ xs: 1, lg: 3 }}>
+              <H1
+                style={{
+                  x: h1X,
+                  marginLeft: h1XmMargin,
+                }}
+              >
                 <Box style={{ rotate: boxRotation, scale: boxScale }} />
 
                 {words.map((word, index) => (
@@ -59,6 +88,7 @@ const Hero = () => {
                     style={{
                       opacity: wordAnimations[index].opacity,
                       y: wordAnimations[index].y,
+                      filter: wordAnimations[index].blur,
                     }}
                   >
                     {word}
