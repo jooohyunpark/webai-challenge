@@ -28,10 +28,17 @@ export const H1 = styled(motion.h1)`
   }
 `;
 
-export const Box = styled(motion.div)`
+export const BoxWrapper = styled(motion.div)`
+  position: relative;
   width: 0.8em;
   height: 0.8em;
   margin-right: 0.2em;
+  z-index: 1;
+`;
+
+export const Box = styled(motion.div)`
+  width: 100%;
+  height: 100%;
   background-color: white;
 `;
 

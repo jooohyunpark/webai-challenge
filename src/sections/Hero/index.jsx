@@ -2,8 +2,8 @@ import { Container, Row, Col } from "react-grid-system";
 import ScrollLayout from "@/components/ScrollLayout";
 import { useState, useRef, useEffect, useMemo } from "react";
 import { useScroll, useTransform, motion, easeInOut } from "motion/react";
-import { StyledSection, H1, Box, H1Span } from "./styles";
-
+import Card from "@/components/Card";
+import { StyledSection, H1, Box, H1Span, BoxWrapper } from "./styles";
 const text = `Discover, remix, and master AI visual creation using our prompt library built for designers`;
 
 const Hero = () => {
@@ -32,7 +32,7 @@ const Hero = () => {
   const boxScale = useTransform(
     scrollYProgress,
     [0, 0.1, 0.9, 0.95],
-    [3, 1, 1, 3]
+    [5, 1, 1, 5]
   );
   const boxRotation = useTransform(
     scrollYProgress,
@@ -80,7 +80,11 @@ const Hero = () => {
                   marginLeft: h1XmMargin,
                 }}
               >
-                <Box style={{ rotate: boxRotation, scale: boxScale }} />
+                <BoxWrapper style={{ rotate: boxRotation, scale: boxScale }}>
+                  <Card>
+                    <Box />
+                  </Card>
+                </BoxWrapper>
 
                 {words.map((word, index) => (
                   <H1Span
