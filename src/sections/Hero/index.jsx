@@ -3,6 +3,7 @@ import ScrollLayout from "@/components/ScrollLayout";
 import { useState, useRef, useMemo } from "react";
 import { useScroll, useTransform, easeInOut } from "motion/react";
 import Card from "@/components/Card";
+import { ThreeScene } from "@/components/ThreeScene";
 import {
   StyledSection,
   H1,
@@ -14,10 +15,14 @@ import {
 } from "./styles";
 
 const text = `Discover, remix, and master AI visual creation using our prompt library built for designers`;
+const imageCount = 12;
+
+const images = Array.from({ length: imageCount }).map((_, i) => ({
+  src: `/${i + 1}.png`,
+}));
 
 const Hero = () => {
   const scrollRef = useRef(null);
-  const boxRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: scrollRef,
@@ -78,100 +83,123 @@ const Hero = () => {
   });
 
   // Generate random positions and animations for images
-  const imageAnimations = useMemo(() => {
-    const imageCount = 12;
+  const imageAnimations = Array.from({ length: imageCount }).map((_, index) => {
+    const positions = [
+      { x: -30, y: -30, scale: 0.7 },
+      { x: 0, y: 30, scale: 1.0 },
+      { x: 30, y: 30, scale: 0.7 },
 
-    return Array.from({ length: imageCount }).map((_, index) => {
-      const pos = {
-        x: Math.random() * 80 - 40, // Random position between -40% and 40%
-        y: Math.random() * 80 - 40,
-        scale: 0.5 + Math.random() * 0.5, // Random scale between 0.5 and 1
-      };
+      { x: -30, y: 0, scale: 0.8 },
+      { x: 30, y: 0, scale: 0.6 },
+      { x: -30, y: 30, scale: 0.9 },
+      { x: 0, y: -30, scale: 1.1 },
+      { x: -15, y: -15, scale: 1.1 },
+      { x: 30, y: -30, scale: 0.9 },
 
-      const fadeStart = 0.2 + (index * 0.05) / imageCount;
-      const fadeEnd = fadeStart + 0.1;
+      { x: 15, y: -15, scale: 0.8 },
+      { x: 0, y: 15, scale: 0.9 },
+      { x: 0, y: 0, scale: 1.2 },
+    ];
 
-      const introStart = 0.45 + (index * 0.2) / imageCount; // Staggered start similar to words
-      const introEnd = introStart + 0.1;
+    const pos = positions[index];
 
-      return {
-        opacity: useTransform(scrollYProgress, [fadeStart, fadeEnd], [0, 1]),
-        x: useTransform(
-          scrollYProgress,
-          [introStart, introEnd],
-          [`${pos.x}vw`, "0vw"],
-          {
-            ease: easeInOut,
-          }
-        ),
-        y: useTransform(
-          scrollYProgress,
-          [introStart, introEnd],
-          [`${pos.y}vh`, "0vh"],
-          {
-            ease: easeInOut,
-          }
-        ),
-        scale: useTransform(
-          scrollYProgress,
-          [introStart, introEnd],
-          [pos.scale, 1]
-        ),
-      };
-    });
-  }, [scrollYProgress]);
+    const fadeStart = 0.3 + (index * 0.2) / imageCount;
+    const fadeEnd = fadeStart + 0.05;
+
+    const animateStart = 0.4 + (index * 0.2) / imageCount;
+    const animateEnd = animateStart + 0.1;
+
+    const scaleStart = 0.5 + (index * 0.1) / imageCount;
+    const scaleEnd = scaleStart + 0.05;
+
+    return {
+      opacity: useTransform(scrollYProgress, [fadeStart, fadeEnd], [0, 1]),
+      blur: useTransform(
+        scrollYProgress,
+        [fadeStart, fadeEnd],
+        ["blur(10px)", "blur(0px)"]
+      ),
+      x: useTransform(
+        scrollYProgress,
+        [animateStart, animateEnd],
+        [`${pos.x}vw`, "0vw"],
+        {
+          ease: easeInOut,
+        }
+      ),
+      y: useTransform(
+        scrollYProgress,
+        [animateStart, animateEnd],
+        [`${pos.y}vh`, `${pos.y + 20}vh`],
+        {
+          ease: easeInOut,
+        }
+      ),
+      scale: useTransform(
+        scrollYProgress,
+        [scaleStart, scaleEnd],
+        [pos.scale, 0]
+      ),
+    };
+  });
 
   return (
-    <StyledSection style={{ position: "relative" }}>
-      <ScrollLayout height="1000vh" ref={scrollRef}>
-        {Array.from({ length: 12 }).map((_, index) => (
-          <ImageWrapper key={index}>
-            <Image
-              src={`/${index + 1}.png`}
-              alt=""
+    <>
+      <StyledSection>
+        <ScrollLayout height="1000vh" ref={scrollRef}>
+          {/* {images.map((image, index) => (
+            <ImageWrapper
+              key={index}
               style={{
                 opacity: imageAnimations[index].opacity,
-                scale: imageAnimations[index].scale,
-                x: imageAnimations[index].x,
+                // x: imageAnimations[index].x,
                 y: imageAnimations[index].y,
+                scale: imageAnimations[index].scale,
+                // filter: imageAnimations[index].blur,
               }}
-            />
-          </ImageWrapper>
-        ))}
+            >
+              <Card>
+                <Image src={image.src} alt="" />
+              </Card>
+            </ImageWrapper>
+          ))} */}
 
-        <Container>
-          <Row>
-            <Col xs={10} lg={6} offset={{ xs: 1, lg: 3 }}>
-              <H1
-                style={{
-                  x: h1X,
-                  marginLeft: h1XmMargin,
-                }}
-              >
-                <BoxWrapper style={{ rotate: boxRotation, scale: boxScale }}>
-                  <Card>
-                    <Box />
-                  </Card>
-                </BoxWrapper>
+          <Container>
+            <Row>
+              <Col xs={10} lg={6} offset={{ xs: 1, lg: 3 }}>
+                <H1
+                  style={{
+                    x: h1X,
+                    marginLeft: h1XmMargin,
+                  }}
+                >
+                  <BoxWrapper style={{ rotate: boxRotation, scale: boxScale }}>
+                    <Card>
+                      <Box />
+                    </Card>
+                  </BoxWrapper>
 
-                {words.map((word, index) => (
-                  <H1Span
-                    key={index}
-                    style={{
-                      opacity: wordAnimations[index].opacity,
-                      y: wordAnimations[index].y,
-                      filter: wordAnimations[index].blur,
-                    }}
-                  >
-                    {word}
-                  </H1Span>
-                ))}
-              </H1>
-            </Col>
-          </Row>
-        </Container>
-      </ScrollLayout>
-    </StyledSection>
+                  {words.map((word, index) => (
+                    <H1Span
+                      key={index}
+                      style={{
+                        opacity: wordAnimations[index].opacity,
+                        y: wordAnimations[index].y,
+                        filter: wordAnimations[index].blur,
+                      }}
+                    >
+                      {word}
+                    </H1Span>
+                  ))}
+                </H1>
+              </Col>
+            </Row>
+          </Container>
+        </ScrollLayout>
+      </StyledSection>
+
+      <ThreeScene />
+    </>
   );
 };
 

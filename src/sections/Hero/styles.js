@@ -49,12 +49,24 @@ export const H1Span = styled(motion.span)`
 
 export const ImageWrapper = styled(motion.div)`
   position: absolute;
-  left: 50%;
-  top: 50%;
+  z-index: 1;
+  width: 100px;
   transform: translate(-50%, -50%);
+
+  @media (min-width: 768px) {
+    width: 180px;
+  }
 `;
 
-export const Image = styled(motion.img)`
+export const Image = styled.img`
+  width: 100%;
   display: block;
-  width: 180px;
+  opacity: 0.6;
+  filter: brightness(0.6);
+  transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+    filter: brightness(1);
+  }
 `;

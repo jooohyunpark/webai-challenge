@@ -18,8 +18,14 @@ const Card = ({ children, intensity = 20 }) => {
     const mouseY = e.clientY - rect.top;
 
     // normalize mouse position to -1 to 1
-    const normalizedX = (mouseX - rect.width / 2) / (rect.width / 2);
-    const normalizedY = (mouseY - rect.height / 2) / (rect.height / 2);
+    const normalizedX = Number(
+      ((mouseX - rect.width / 2) / (rect.width / 2)).toFixed(2)
+    );
+    const normalizedY = Number(
+      ((mouseY - rect.height / 2) / (rect.height / 2)).toFixed(2)
+    );
+
+    console.log(normalizedX, normalizedY);
 
     setRotateX(normalizedY);
     setRotateY(normalizedX * -1);
@@ -36,9 +42,9 @@ const Card = ({ children, intensity = 20 }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        transform: `perspective(400px) rotate3d(${rotateY * intensity}, ${
-          rotateX * intensity
-        }, 0, 15deg)`,
+        transform: `perspective(400px) rotate3d(${rotateX * intensity}, ${
+          rotateY * intensity
+        }, 0, 5deg)`,
       }}
     >
       {children}
