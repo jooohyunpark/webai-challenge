@@ -41,32 +41,24 @@ export const Box = styled(motion.div)`
   width: 100%;
   height: 100%;
   background-color: white;
+  border: 1px solid transparent;
+  transition: border-color 0.2s linear, background 0.25s ease-in-out;
+
+  &:hover {
+    border-color: white;
+    background: transparent;
+  }
 `;
 
 export const H1Span = styled(motion.span)`
   display: inline-block;
 `;
 
-export const ImageWrapper = styled(motion.div)`
-  position: absolute;
-  z-index: 1;
-  width: 100px;
-  transform: translate(-50%, -50%);
-
-  @media (min-width: 768px) {
-    width: 180px;
-  }
-`;
-
-export const Image = styled.img`
+export const ThreeSceneWrapper = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  display: block;
-  opacity: 0.6;
-  filter: brightness(0.6);
-  transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
-
-  &:hover {
-    opacity: 1;
-    filter: brightness(1);
-  }
+  height: 100%;
+  z-index: 1;
 `;

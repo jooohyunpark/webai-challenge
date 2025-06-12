@@ -44,7 +44,7 @@ const Card = ({ children, intensity = 20 }) => {
       style={{
         transform: `perspective(400px) rotate3d(${rotateX * intensity}, ${
           rotateY * intensity
-        }, 0, 5deg)`,
+        }, 0, 15deg)`,
       }}
     >
       {children}

@@ -8,15 +8,7 @@ import { easing, geometry } from "maath";
 extend(geometry);
 
 export const ThreeScene = () => (
-  <Canvas
-    style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-    }}
-  >
+  <Canvas style={{ pointerEvents: "inherit" }}>
     <Scene position={[0, 1.5, 0]} />
   </Canvas>
 );
@@ -29,7 +21,7 @@ function Scene({ children, ...props }) {
     state.events.update(); // Raycasts every frame rather than on pointer-move
     easing.damp3(
       state.camera.position,
-      [-state.pointer.x, state.pointer.y + 6, 8],
+      [-state.pointer.x * 0.5, state.pointer.y * 0.5 + 6, 8],
       0.3,
       delta
     );
@@ -59,8 +51,16 @@ function Cards({
 }) {
   const [hovered, hover] = useState(null);
   const amount = Math.round(len * 12);
+  const groupRef = useRef();
+
+  useFrame((state, delta) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y += delta * 0.05;
+    }
+  });
+
   return (
-    <group {...props}>
+    <group ref={groupRef} {...props}>
       {Array.from({ length: amount }, (_, i) => {
         const angle = from + (i / amount) * len;
         return (
@@ -86,8 +86,8 @@ function Card({ url, active, hovered, ...props }) {
   const ref = useRef();
   useFrame((state, delta) => {
     const f = hovered ? 1.3 : 1;
-    easing.damp3(ref.current.position, [0, hovered ? 0.25 : 0, 0], 0.1, delta);
-    easing.damp3(ref.current.scale, [1 * f, 1 * f, 1], 0.15, delta);
+    easing.damp3(ref.current.position, [0, hovered ? 0.15 : 0, 0], 0.05, delta);
+    easing.damp3(ref.current.scale, [1 * f, 1 * f, 1], 0.08, delta);
   });
   return (
     <group {...props}>
