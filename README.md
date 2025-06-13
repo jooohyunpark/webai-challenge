@@ -1,24 +1,13 @@
 # Web AI coding challenge
 
-## Tech stasck
+## Front-end stack
 
-React, styled-components, motion, react-grid-system. Especially, motion is powerful to implement scroll-based animations. React-grid-system is used to achieve 12 column responsive flexbox system, without detailed configurations.
+React, styled-components, motion, react-grid-system, react-three-fiber. Especially, motion is powerful to implement scroll-based animations. React-grid-system is used to achieve 12 column responsive flexbox system. r3f for the 3D image gallery.
 
-## Features
+## Process
 
-- All components are designed to be as declarative and reusable as possible, within the constraints of available time.
-- Created FadeIn, Parallax, Card component that supports custom interactions.
+Concepting -> Front-end architecture → Scaffold responsive 12-column layout → Build basic sections/components → Implement micro-animation for hero copy → Ideate/research interactions for images → Build 3D image gallery → Fine-tune detailed motions
 
 ## Trade-offs
 
-- Sacrificed responsiveness due to time limitations, with a focus on micro-interactions and functionality instead.
-- The toggle gallery view snaps during layout transitions. This is due to css relayout.
-
-## If I had enough time:
-
-- Swiper for Carousel implementation, so that all items are view-able.
-- Suggest design layout updates to better achieve smooth transition between carousel-gallery views, without making conflict with the copy.
-- Instead of fade in/out for Gallery items, explore layout transition using framer motion. (This could be possible using recent `layout` features)
-- Better resonsiveness over mobile/tablet/desktop breakpoints.
-- Implement a11y best practices.
-- Avoid using fixed position for gallery grid view.
+Due to time constraints, accessibility (a11y) was not included in the scope. For example, image captions and descriptive text for the 3D scene were omitted.
