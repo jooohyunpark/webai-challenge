@@ -39,8 +39,8 @@ const Hero = () => {
 
   const boxScale = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.85, 0.95],
-    [5, 1, 1, 5]
+    [0, 0.1, 0.55, 0.6, 0.63, 0.85, 0.95],
+    [5, 1, 1, 1.4, 1, 1, 5]
   );
   const boxRotation = useTransform(
     scrollYProgress,
@@ -65,6 +65,9 @@ const Hero = () => {
     const introStart = 0.12 + (index * 0.15) / wordCount;
     const introEnd = introStart + 0.1;
 
+    const shadowStart = 0.56 + (index * 0.06) / wordCount;
+    const shadowEnd = shadowStart + 0.05;
+
     const outroStart = 0.83;
     const outroEnd = 0.86;
 
@@ -81,6 +84,15 @@ const Hero = () => {
         scrollYProgress,
         [introStart, introEnd, outroStart, outroEnd],
         ["blur(5px)", "blur(0px)", "blur(0px)", "blur(5px)"]
+      ),
+      textShadow: useTransform(
+        scrollYProgress,
+        [shadowStart, shadowEnd, shadowEnd + 0.1],
+        [
+          "0 0 5px rgba(0,0,0,0), 0 0 10px rgba(0,0,0,0), 0 0 15px rgba(0,0,0,0)",
+          "0 0 5px #ccc, 0 0 10px #ccc, 0 0 15px #ccc",
+          "0 0 5px rgba(0,0,0,0), 0 0 10px rgba(0,0,0,0), 0 0 15px rgba(0,0,0,0)",
+        ]
       ),
     };
   });
@@ -120,6 +132,7 @@ const Hero = () => {
                         opacity: wordAnimations[index].opacity,
                         y: wordAnimations[index].y,
                         filter: wordAnimations[index].blur,
+                        textShadow: wordAnimations[index].textShadow,
                       }}
                     >
                       {word}
