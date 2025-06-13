@@ -10,4 +10,5 @@ Concepting -> Front-end architecture → Scaffold responsive 12-column layout �
 
 ## Trade-offs
 
-Due to time constraints, accessibility (a11y) was not included in the scope. For example, image captions and descriptive text for the 3D scene were omitted.
+- Accessibility (a11y) was not included in the scope. For example, image captions and descriptive text for the 3D scene were omitted.
+- Optimization – The Three.js scene rendering could be dynamically paused when the section is out of view to conserve memory, but this was not implemented due to time constraints.
