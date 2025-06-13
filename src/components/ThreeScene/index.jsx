@@ -85,7 +85,7 @@ function Cards({
 function Card({ url, active, hovered, ...props }) {
   const ref = useRef();
   useFrame((state, delta) => {
-    const f = hovered ? 1.3 : 1;
+    const f = hovered ? 1.4 : 1;
     easing.damp3(ref.current.position, [0, hovered ? 0.15 : 0, 0], 0.05, delta);
     easing.damp3(ref.current.scale, [1 * f, 1 * f, 1], 0.08, delta);
   });
