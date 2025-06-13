@@ -44,7 +44,7 @@ const Hero = () => {
   );
   const boxRotation = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.55, 0.55, 0.6, 0.85, 0.85, 0.95],
+    [0, 0.1, 0.55, 0.55, 0.63, 0.85, 0.85, 0.95],
     [
       "0deg",
       "-180deg",
