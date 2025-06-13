@@ -39,12 +39,12 @@ const Hero = () => {
 
   const boxScale = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.55, 0.6, 0.63, 0.85, 0.95],
+    [0, 0.1, 0.5, 0.6, 0.63, 0.85, 0.95],
     [5, 1, 1, 1.4, 1, 1, 5]
   );
   const boxRotation = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.55, 0.55, 0.63, 0.85, 0.85, 0.95],
+    [0, 0.1, 0.53, 0.53, 0.63, 0.85, 0.85, 0.95],
     [
       "0deg",
       "-180deg",
@@ -65,7 +65,7 @@ const Hero = () => {
     const introStart = 0.12 + (index * 0.15) / wordCount;
     const introEnd = introStart + 0.1;
 
-    const shadowStart = 0.56 + (index * 0.06) / wordCount;
+    const shadowStart = 0.53 + (index * 0.06) / wordCount;
     const shadowEnd = shadowStart + 0.05;
 
     const outroStart = 0.83;
