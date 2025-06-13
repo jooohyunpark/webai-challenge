@@ -41,12 +41,10 @@ export const Box = styled(motion.div)`
   width: 100%;
   height: 100%;
   background-color: white;
-  border: 1px solid transparent;
-  transition: border-color 0.2s linear, background 0.25s ease-in-out;
+  transition: box-shadow 0.25s ease-in-out;
 
   &:hover {
-    border-color: white;
-    background: transparent;
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.65);
   }
 `;
 
